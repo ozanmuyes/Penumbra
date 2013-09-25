@@ -3,7 +3,7 @@ Screen filter software for your eyes while working at night. Your ophthalmologis
 
 Penumbra allows you to dimmer your screen without LCD brightness restrictions. We love to code and that is the main reason why we created FriendEye and it's successor Penumbra. While everything going well suddenly we decide to stop developing FriendEye. Some of the reason are unpreventable errors, settings limitations -due to it's architecture- so on and so forth. So this is a fresh start to make an application that you will love. It's light, fast, lean and mean.
 
-Visit **[here](http://www.ozanmuyes/penumbra) for more details, screenshots and screencast.
+Visit Penumbra at [here](http://www.ozanmuyes/penumbra) for more details, screenshots and screencast.
 
 ## Version 1.0.0
 Core functions of FriendEye has been taken from past project. No unnecessary functions added to it. It is ready to get stronger.

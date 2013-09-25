@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Penumbra", "Penumbra.csproj", "{8F0DB844-8F52-4B32-B93E-681F322691CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PU_Keyboard", "PU_Keyboard\PU_Keyboard.csproj", "{2A95D861-95F9-48FC-91DA-392A323B8366}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F0DB844-8F52-4B32-B93E-681F322691CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F0DB844-8F52-4B32-B93E-681F322691CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F0DB844-8F52-4B32-B93E-681F322691CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F0DB844-8F52-4B32-B93E-681F322691CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A95D861-95F9-48FC-91DA-392A323B8366}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A95D861-95F9-48FC-91DA-392A323B8366}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A95D861-95F9-48FC-91DA-392A323B8366}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A95D861-95F9-48FC-91DA-392A323B8366}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

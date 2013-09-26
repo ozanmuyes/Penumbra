@@ -40,7 +40,15 @@
     <Compile Include="Hotkey.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Window.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PU_Bridge\PU_Bridge.csproj">
+      <Project>{4e2baf4b-557f-4848-b041-ec4ea41dc997}</Project>
+      <Name>PU_Bridge</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ChangeLog.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -85,6 +85,16 @@
   <ItemGroup>
     <None Include="Images\eye_on.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="PU_Bridge\PU_Bridge.csproj">
+      <Project>{4e2baf4b-557f-4848-b041-ec4ea41dc997}</Project>
+      <Name>PU_Bridge</Name>
+    </ProjectReference>
+    <ProjectReference Include="PU_Keyboard\PU_Keyboard.csproj">
+      <Project>{2A95D861-95F9-48FC-91DA-392A323B8366}</Project>
+      <Name>PU_Keyboard</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

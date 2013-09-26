@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Xml.Serialization;
 using System.Windows.Forms;
 using System.Windows.Input;
+using PU_Bridge;
 
 namespace PU_Keyboard
 {
@@ -234,7 +235,7 @@ namespace PU_Keyboard
 				throw new NotSupportedException("You cannot register a hotkey that is already registered");
 
 			if (p_WindowControl == default(Control))
-				p_WindowControl = m_HotkeyWindow.m_Button;
+				p_WindowControl = m_HotkeyWindow.m_Hotkey;
 
 			// Get an ID for the hotkey and increase current ID
 			m_ID = m_CurrentID;

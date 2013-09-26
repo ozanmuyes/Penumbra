@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Forms;
+using PU_Bridge;
 using PU_Keyboard;
 using Penumbra.Classes;
 using Penumbra.Windows;
@@ -67,24 +68,26 @@ namespace Penumbra
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
+			Bridge.Initialize();
+
 			Application.ApplicationExit += Application_Exit;
 
 			m_ContextMenu =
 				new ContextMenu(new[]
-					                {
-						                new MenuItem(@"Show Settings", (p_Sender, p_Args) => ToggleSettings()) { Checked = false }, 
-						                new MenuItem(@"-"),
-						                new MenuItem(@"Quit", (p_Sender, p_Args) => Application.Exit())
-					                });
+									{
+										new MenuItem(@"Show Settings", (p_Sender, p_Args) => ToggleSettings()) { Checked = false }, 
+										new MenuItem(@"-"),
+										new MenuItem(@"Quit", (p_Sender, p_Args) => Application.Exit())
+									});
 			
 
 			m_NotifyIcon = new NotifyIcon
-				               {
-					               Icon = (Filtering ? Properties.Resources.eye_on : Properties.Resources.eye_off),
-					               Visible = true,
+							   {
+								   Icon = (Filtering ? Properties.Resources.eye_on : Properties.Resources.eye_off),
+								   Visible = true,
 								   ContextMenu = m_ContextMenu,
 								   Text = "Penumbra - " + (Filtering ? @"On (" + FilterLevel + @"%)" : "Off")
-				               };
+							   };
 			m_NotifyIcon.DoubleClick += m_NotifyIcon_DoubleClick;
 
 			// Register hotkeys

@@ -2,7 +2,7 @@
 * Initial version
 
 # Version 1.0.1
-* __REM__: *Window.cs*<br>
+* REM: *Window.cs*<br>
 	Window class which is responsible for catching hotkey message hook, is moved to __PU_Bridge__ library for usability extension.<br>See [__PU_Bridge__ ChangeLog](https://github.com/ozanmuyes/Penumbra/blob/master/PU_Bridge/ChangeLog.md#version-101 "PU_Bridge Change Log") for more information.
 
 ---

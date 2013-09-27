@@ -2,7 +2,7 @@
 * Initial version
 
 # Version 1.0.1
-* __ADD__: *Windows.cs*<br>
+* ADD: *Windows.cs*<br>
 	Window class has been copied from __PU_Keyboard__.<br>
 The class will be using for application wide Windows message handling. Thus provide us and GitHub contributors to have a neat application architecture and better control of the application.
 

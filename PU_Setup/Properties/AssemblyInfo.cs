@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Penumbra")]
-[assembly: AssemblyDescription("Screen Filter Software")]
+[assembly: AssemblyTitle("PU_Setup")]
+[assembly: AssemblyDescription("Penumbra Installer")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Ozan Müyesseroğlu")]
-[assembly: AssemblyProduct("Penumbra")]
+[assembly: AssemblyProduct("PU_Setup")]
 [assembly: AssemblyCopyright("Copyright © 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b009afa2-3b7f-44dc-9463-20beab5eb47b")]
+[assembly: Guid("9293636d-1613-4541-befe-7fc92116e661")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

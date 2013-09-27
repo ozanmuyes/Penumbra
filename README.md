@@ -10,8 +10,22 @@ Core functions of FriendEye has been taken from past project. No unnecessary fun
 * Plain filter mechanism
 * Hotkey support
 
+### Version 1.1.0
+* ADD: *PU_Setup Library*<br>
+	Simple setup operations handled for medium Windows users.
+
 ## Download, Fork, Commit
 If you think you can make this better, please Download, Fork & Commit. We appreciate it.
 
 ## License
 Penumbra by Ozan Müyesseroğlu is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.
+
+---
+
+### Abbreviations
+* ADD: Added
+* ALT: Altered<br>
+	Changes made no visible effect and/or feature is still the same. Syntax fix, coding improved etc... has been made. Information for GitHub contributors.
+* UPD: Updated<br>
+	Changes made visible effect and/or feature improved.
+* REM: Removed

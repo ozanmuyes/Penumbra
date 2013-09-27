@@ -61,12 +61,12 @@
 			this.lb_Increase = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.gb_General = new System.Windows.Forms.GroupBox();
+			this.lb_FilterLevelMax = new System.Windows.Forms.Label();
+			this.lb_FilterLevelMin = new System.Windows.Forms.Label();
 			this.cb_Filter = new System.Windows.Forms.CheckBox();
 			this.label6 = new System.Windows.Forms.Label();
 			this.lb_FilterLevel = new System.Windows.Forms.Label();
 			this.tb_FilterLevel = new System.Windows.Forms.TrackBar();
-			this.lb_FilterLevelMin = new System.Windows.Forms.Label();
-			this.lb_FilterLevelMax = new System.Windows.Forms.Label();
 			this.gb_Hotkeys.SuspendLayout();
 			this.gb_General.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.tb_FilterLevel)).BeginInit();
@@ -684,6 +684,26 @@
 			this.gb_General.TabStop = false;
 			this.gb_General.Text = "General";
 			// 
+			// lb_FilterLevelMax
+			// 
+			this.lb_FilterLevelMax.AutoSize = true;
+			this.lb_FilterLevelMax.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.lb_FilterLevelMax.Location = new System.Drawing.Point(291, 76);
+			this.lb_FilterLevelMax.Name = "lb_FilterLevelMax";
+			this.lb_FilterLevelMax.Size = new System.Drawing.Size(34, 13);
+			this.lb_FilterLevelMax.TabIndex = 2;
+			this.lb_FilterLevelMax.Text = "100%";
+			// 
+			// lb_FilterLevelMin
+			// 
+			this.lb_FilterLevelMin.AutoSize = true;
+			this.lb_FilterLevelMin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+			this.lb_FilterLevelMin.Location = new System.Drawing.Point(146, 76);
+			this.lb_FilterLevelMin.Name = "lb_FilterLevelMin";
+			this.lb_FilterLevelMin.Size = new System.Drawing.Size(22, 13);
+			this.lb_FilterLevelMin.TabIndex = 2;
+			this.lb_FilterLevelMin.Text = "0%";
+			// 
 			// cb_Filter
 			// 
 			this.cb_Filter.AutoSize = true;
@@ -722,26 +742,6 @@
 			this.tb_FilterLevel.TabIndex = 1;
 			this.tb_FilterLevel.TickStyle = System.Windows.Forms.TickStyle.None;
 			this.tb_FilterLevel.Scroll += new System.EventHandler(this.tb_FilterLevel_Scroll);
-			// 
-			// lb_FilterLevelMin
-			// 
-			this.lb_FilterLevelMin.AutoSize = true;
-			this.lb_FilterLevelMin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lb_FilterLevelMin.Location = new System.Drawing.Point(146, 76);
-			this.lb_FilterLevelMin.Name = "lb_FilterLevelMin";
-			this.lb_FilterLevelMin.Size = new System.Drawing.Size(22, 13);
-			this.lb_FilterLevelMin.TabIndex = 2;
-			this.lb_FilterLevelMin.Text = "0%";
-			// 
-			// lb_FilterLevelMax
-			// 
-			this.lb_FilterLevelMax.AutoSize = true;
-			this.lb_FilterLevelMax.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-			this.lb_FilterLevelMax.Location = new System.Drawing.Point(291, 76);
-			this.lb_FilterLevelMax.Name = "lb_FilterLevelMax";
-			this.lb_FilterLevelMax.Size = new System.Drawing.Size(34, 13);
-			this.lb_FilterLevelMax.TabIndex = 2;
-			this.lb_FilterLevelMax.Text = "100%";
 			// 
 			// SettingsWindow
 			// 

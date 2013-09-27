@@ -90,12 +90,12 @@ namespace Penumbra
 							   };
 			m_NotifyIcon.DoubleClick += m_NotifyIcon_DoubleClick;
 
-			// Register hotkeys
+			// Set and configure hotkeys
 			//
-			m_HotkeyIncrease = new Hotkey(m_INI.ReadString(@"Hotkeys", "increase"));
+			m_HotkeyIncrease = new Hotkey(m_INI.ReadString(@"Hotkeys", "increase")) { Enabled = Filtering };
 			m_HotkeyIncrease.Pressed += delegate { IncreaseFilterLevel(); };
 
-			m_HotkeyDecrease = new Hotkey(m_INI.ReadString(@"Hotkeys", "decrease"));
+			m_HotkeyDecrease = new Hotkey(m_INI.ReadString(@"Hotkeys", "decrease")) { Enabled = Filtering };
 			m_HotkeyDecrease.Pressed += delegate { DecreaseFilterLevel(); };
 
 			m_HotkeyToggle = new Hotkey(m_INI.ReadString(@"Hotkeys", "toggle"));

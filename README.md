@@ -3,29 +3,21 @@
 
 Penumbra allows you to dimmer your screen without LCD brightness restrictions. We love to code and that is the main reason why we created FriendEye and it's successor Penumbra. While everything going well suddenly we decide to stop developing FriendEye. Some of the reason are unpreventable errors, settings limitations -due to it's architecture- so on and so forth. So this is a fresh start to make an application that you will love. It's light, fast, lean and mean.
 
-Visit Penumbra at [here](http://www.ozanmuyes.com/penumbra) for more details, screenshots and screencast.
+### Version 1.1.1
+* Context hide setting fix<br>
+	Thanks [abs-paradigm](https://github.com/abs-paradigm) for the fix.
+
+### Version 1.1.0
+* PU_Setup Library added<br>
+	Simple setup operations handled for medium Windows users.
 
 ### Version 1.0.0
 Core functions of FriendEye has been taken from past project. No unnecessary functions added to it. It is ready to get stronger.
 * Plain filter mechanism
 * Hotkey support
 
-### Version 1.1.0
-* ADD: *PU_Setup Library*<br>
-	Simple setup operations handled for medium Windows users.
-
 ## Download, Fork, Commit
 If you think you can make this better, please Download, Fork & Commit. We appreciate it.
 
 ## License
 Penumbra by Ozan Müyesseroğlu is licensed under a Creative Commons Attribution-NonCommercial 3.0 Unported License.
-
----
-
-### Abbreviations
-* ADD: Added
-* ALT: Altered<br>
-	Changes made no visible effect and/or feature is still the same. Syntax fix, coding improved etc... has been made. Information for GitHub contributors.
-* UPD: Updated<br>
-	Changes made visible effect and/or feature improved.
-* REM: Removed

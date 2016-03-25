@@ -73,6 +73,8 @@ namespace Penumbra.Windows
 			
 			base.OnClosing(e);
 
+            Program.CloseWindow();
+
 			e.Cancel = true;
 
 			Visible = false;

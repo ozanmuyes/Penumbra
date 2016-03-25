@@ -176,6 +176,14 @@ namespace Penumbra
 
 		}
 
+        public static void CloseWindow()
+        {
+            m_ContextMenu.MenuItems[0].Text = @"Show Settings";
+
+            m_SettingsWindow = null;
+        }
+
+
 		public static int BrightnessToFilterLevel(byte p_Brightness)
 		{
 

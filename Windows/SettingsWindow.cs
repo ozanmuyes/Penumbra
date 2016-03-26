@@ -60,6 +60,18 @@ namespace Penumbra.Windows
 			cb_QuitAlt.Checked = (Program.m_HotkeyQuit.Alt);
 			cb_QuitKey.Text = Program.m_HotkeyQuit.Key.ToString();
 
+            bool brightnessCapability = Monitors.brightnessCapability();
+            tb_BrightnessLevel.Enabled = brightnessCapability;
+            lb_BrightnessLevel.Enabled = brightnessCapability;
+
+            if(brightnessCapability){
+
+                tb_BrightnessLevel.Value = Monitors.getBrightness();
+            }
+            
+
+            lb_FilterLevel.Enabled = Program.Filtering;
+
 			InternalChangeInProgress = false;
 
 		}
@@ -115,6 +127,16 @@ namespace Penumbra.Windows
 			Program.SetBrightness(tb_FilterLevel.Value);
 
 		}
+
+        private void tb_Brightness_Scroll(object sender, EventArgs e)
+        {
+
+            if (InternalChangeInProgress)
+                return;
+
+            Monitors.setBrightness(tb_BrightnessLevel.Value);// (tb_BrightnessLevel.Value);
+
+        }
 
 		private void IncreaseModifierChanged(object sender, EventArgs e)
 		{

@@ -116,8 +116,13 @@ namespace Penumbra
 			// Check the initial filter state and act according it
 			//
 			if (Filtering)
-				Brightness.SetBrightness(FilterLevelToBrightness(byte.Parse(FilterLevel.ToString(CultureInfo.InvariantCulture))));
+				Filter.SetBrightness(FilterLevelToBrightness(byte.Parse(FilterLevel.ToString(CultureInfo.InvariantCulture))));
 
+            Monitors.init();
+            /*if (Monitor.brightnessCapability())
+            {
+                m_SettingsWindow.tb_BrightnessLevel.Enabled = false;
+            }*/
 			Application.Run();
 
 		}
@@ -134,7 +139,7 @@ namespace Penumbra
 
 				m_NotifyIcon.Icon = Properties.Resources.eye_off;
 
-				Brightness.ResetBrightness();
+				Filter.ResetBrightness();
 
 				m_HotkeyIncrease.Enabled = m_HotkeyDecrease.Enabled = false;
 
@@ -142,7 +147,8 @@ namespace Penumbra
 				{
 
 					m_SettingsWindow.InternalChangeInProgress = true;
-					m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.tb_FilterLevel.Enabled = false;
+                    m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.tb_FilterLevel.Enabled = false;
+                    m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.lb_FilterLevel.Enabled = false;
 					m_SettingsWindow.InternalChangeInProgress = false;
 
 				}
@@ -155,7 +161,7 @@ namespace Penumbra
 
 				m_NotifyIcon.Icon = Properties.Resources.eye_on;
 
-				Brightness.SetBrightness(FilterLevelToBrightness(byte.Parse(m_INI.ReadString(@"Filter", @"level"))));
+				Filter.SetBrightness(FilterLevelToBrightness(byte.Parse(m_INI.ReadString(@"Filter", @"level"))));
 
 				m_HotkeyIncrease.Enabled = m_HotkeyDecrease.Enabled = true;
 
@@ -163,6 +169,7 @@ namespace Penumbra
 				{
 
 					m_SettingsWindow.InternalChangeInProgress = true;
+                    m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.lb_FilterLevel.Enabled = true;
 					m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.tb_FilterLevel.Enabled = true;
 					m_SettingsWindow.InternalChangeInProgress = false;
 
@@ -206,7 +213,7 @@ namespace Penumbra
 			else if (p_FilterLevel > MAX_FILTER_LEVEL)
 				p_FilterLevel = MAX_FILTER_LEVEL;
 
-			Brightness.SetBrightness(FilterLevelToBrightness(p_FilterLevel));
+			Filter.SetBrightness(FilterLevelToBrightness(p_FilterLevel));
 
 			if (m_SettingsWindow != null)
 				m_SettingsWindow.tb_FilterLevel.Value = p_FilterLevel;
@@ -280,7 +287,7 @@ namespace Penumbra
 			m_NotifyIcon = null;
 
 			// Restore the old brightness
-			Brightness.Finalize();
+			Filter.Finalize();
 
 		}
 

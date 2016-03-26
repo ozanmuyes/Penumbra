@@ -68,7 +68,6 @@ namespace Penumbra.Classes
 
 		static Filter()
 		{
-            //IntPtr ptr = IntPtr.Add(IntPtr.Zero, 1);
             GetDeviceGammaRamp(GetDC(IntPtr.Zero), ref m_InitialRAMP);
 
 			m_CurrentBrightness = GetBrightnessFromRAMP(m_InitialRAMP);

@@ -109,7 +109,7 @@
             this.gb_Hotkeys.Controls.Add(this.lb_Ctrl);
             this.gb_Hotkeys.Controls.Add(this.lb_Increase);
             this.gb_Hotkeys.Controls.Add(this.label5);
-            this.gb_Hotkeys.Location = new System.Drawing.Point(12, 224);
+            this.gb_Hotkeys.Location = new System.Drawing.Point(12, 180);
             this.gb_Hotkeys.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gb_Hotkeys.Name = "gb_Hotkeys";
             this.gb_Hotkeys.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -796,7 +796,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(357, 474);
+            this.ClientSize = new System.Drawing.Size(357, 430);
             this.Controls.Add(this.gb_General);
             this.Controls.Add(this.gb_Hotkeys);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));

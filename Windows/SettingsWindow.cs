@@ -60,13 +60,14 @@ namespace Penumbra.Windows
 			cb_QuitAlt.Checked = (Program.m_HotkeyQuit.Alt);
 			cb_QuitKey.Text = Program.m_HotkeyQuit.Key.ToString();
 
-            bool brightnessCapability = Monitors.brightnessCapability();
+            bool brightnessCapability = Monitors.Instance.HasBrightnessCapability();
+
             tb_BrightnessLevel.Enabled = brightnessCapability;
             lb_BrightnessLevel.Enabled = brightnessCapability;
 
             if(brightnessCapability){
 
-                tb_BrightnessLevel.Value = Monitors.getBrightness();
+                tb_BrightnessLevel.Value = Monitors.Instance.GetBrightness();
             }
             
 
@@ -114,7 +115,6 @@ namespace Penumbra.Windows
 
 			Program.ToggleFilter();
 
-			tb_FilterLevel.Enabled = Program.Filtering;
 
 		}
 
@@ -134,7 +134,7 @@ namespace Penumbra.Windows
             if (InternalChangeInProgress)
                 return;
 
-            Monitors.setBrightness(tb_BrightnessLevel.Value);// (tb_BrightnessLevel.Value);
+            Monitors.Instance.SetBrightness(tb_BrightnessLevel.Value);
 
         }
 

@@ -44,7 +44,7 @@ namespace Penumbra
 			get { return m_INI.ReadBoolean(@"Filter", @"active"); }
 
 			set { m_INI.WriteValue(@"Filter", @"active", (value ? "1" : "0")); }
-
+            //this will cause problems if the folder is readOnly
 		}
 
 		public static int FilterLevel
@@ -118,11 +118,8 @@ namespace Penumbra
 			if (Filtering)
 				Filter.SetBrightness(FilterLevelToBrightness(byte.Parse(FilterLevel.ToString(CultureInfo.InvariantCulture))));
 
-            Monitors.init();
-            /*if (Monitor.brightnessCapability())
-            {
-                m_SettingsWindow.tb_BrightnessLevel.Enabled = false;
-            }*/
+            Monitors.Instance.Init();
+
 			Application.Run();
 
 		}
@@ -148,8 +145,10 @@ namespace Penumbra
 
 					m_SettingsWindow.InternalChangeInProgress = true;
                     m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.tb_FilterLevel.Enabled = false;
-                    m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.lb_FilterLevel.Enabled = false;
-					m_SettingsWindow.InternalChangeInProgress = false;
+                    m_SettingsWindow.lb_FilterLevel.Enabled = false;
+                    m_SettingsWindow.tb_FilterLevel.Enabled = false;
+
+                    m_SettingsWindow.InternalChangeInProgress = false;
 
 				}
 
@@ -169,9 +168,10 @@ namespace Penumbra
 				{
 
 					m_SettingsWindow.InternalChangeInProgress = true;
-                    m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.lb_FilterLevel.Enabled = true;
 					m_SettingsWindow.cb_Filter.Checked = m_SettingsWindow.tb_FilterLevel.Enabled = true;
-					m_SettingsWindow.InternalChangeInProgress = false;
+                    m_SettingsWindow.lb_FilterLevel.Enabled = true;
+                    m_SettingsWindow.tb_FilterLevel.Enabled = true;
+                    m_SettingsWindow.InternalChangeInProgress = false;
 
 				}
 
@@ -179,7 +179,7 @@ namespace Penumbra
 
 			}
 
-			Filtering = !Filtering;
+            Filtering = !Filtering;
 
 		}
 
@@ -218,7 +218,7 @@ namespace Penumbra
 			if (m_SettingsWindow != null)
 				m_SettingsWindow.tb_FilterLevel.Value = p_FilterLevel;
 
-			m_INI.WriteValue(@"Filter", @"level", p_FilterLevel.ToString(CultureInfo.InvariantCulture));
+            m_INI.WriteValue(@"Filter", @"level", p_FilterLevel.ToString(CultureInfo.InvariantCulture));
 
 			m_NotifyIcon.Text = @"Penumbra - On (" + FilterLevel + @"%)";
 

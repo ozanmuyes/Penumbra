@@ -12,6 +12,75 @@ namespace Penumbra
     class Monitors
     {
 
+#region Consts
+
+        public const uint MC_CAPS_BRIGHTNESS = 0x00000002;
+
+#endregion
+
+
+#region Structs
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct Rect
+        {
+            public int left;
+            public int top;
+            public int right;
+            public int bottom;
+        }
+
+        public struct Monitor
+        {
+            public IntPtr hMonitor;
+            public Brightness brightness;
+            public Monitor init()
+            {
+                brightness = brightness.init();
+                return this;
+            }
+        }
+        public struct Brightness
+        {
+            public uint current;
+            public uint min;
+            public uint max;
+
+            public Brightness init()
+            {
+                  current = 0;
+                  min = 0;
+                  max = 0;
+                  return this;
+            }
+        }
+
+        public struct MonitorResult
+        {
+            public Boolean success;
+            public IntPtr hMonitor;
+
+            public MonitorResult init()
+            {
+                success = false;
+                hMonitor = IntPtr.Zero;
+                return this;
+            }
+        }
+
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        public struct PHYSICAL_MONITOR
+        {
+            public IntPtr hPhysicalMonitor;
+
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+            public string szPhysicalMonitorDescription;
+        }
+
+#endregion
+
+
+#region Imports
         [DllImport("user32.dll")]
         static extern bool EnumDisplayMonitors(IntPtr hdc, IntPtr lprcClip, MonitorEnumDelegate lpfnEnum, IntPtr dwData);
 
@@ -55,60 +124,87 @@ namespace Penumbra
         public static extern bool GetMonitorCapabilities(
             IntPtr hMonitor, ref uint pdwMonitorCapabilities, ref uint pdwSupportedColorTemperatures);
 
+#endregion
+
+
+#region Variables
+        
         static ArrayList hMonitorList = new ArrayList();
+        
+        private static Monitors instance;
+
+#endregion
 
 
-        [StructLayout(LayoutKind.Sequential)]
-        public struct Rect
+#region Ctors
+
+        private Monitors()
         {
-            public int left;
-            public int top;
-            public int right;
-            public int bottom;
+
         }
-
-        public struct Monitor
+        public static Monitors Instance
         {
-            public IntPtr hMonitor;
-            public Brightness brightness;
-            public Monitor init()
+            get
             {
-                brightness = brightness.init();
-                return this;
-            }
-        }
-        public struct Brightness
-        {
-            public uint current;
-            public uint min;
-            public uint max;
-
-            public Brightness init()
-            {
-                  current = 0;
-                  min = 0;
-                  max = 0;
-                  return this;
+                if (instance == null)
+                {
+                    instance = new Monitors();
+                }
+                return instance;
             }
         }
 
-        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
-        public struct PHYSICAL_MONITOR
+#endregion
+
+        #region Public Functions
+
+        public void Init()
         {
-            public IntPtr hPhysicalMonitor;
-
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-            public string szPhysicalMonitorDescription;
+            GetDisplays();
         }
-
-        public static int getBrightness()
+        public int GetBrightness()
         {
             return Convert.ToInt32(((Monitor)hMonitorList[0]).brightness.current);
         }
-
-        private static bool initBrightness(IntPtr hMonitor)
+        public void SetBrightness(int brightness)
         {
+            //todo get the normalized brightness
+            foreach (Monitor monitor in hMonitorList)
+            {
+                bool isIt = SetMonitorBrightness(monitor.hMonitor, brightness);
+                int lastWin32Error = Marshal.GetLastWin32Error();
+            }
+        }
 
+        public Boolean HasBrightnessCapability()
+        {
+            return hMonitorList.Count > 0;
+        }
+
+
+#endregion
+
+
+#region Private Functions
+
+        private static void GetDisplays()
+        {
+            EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero,
+                delegate(IntPtr hMonitor, IntPtr hdcMonitor, ref Rect lprcMonitor, IntPtr dwData)
+                {
+                    MonitorResult monitorResult = VerifyMonitorCapabilities(hMonitor);
+
+                    if (monitorResult.success)
+                    {
+                        RecordMonitorBrightness(monitorResult.hMonitor);
+                    }
+
+                    return true;
+                }, IntPtr.Zero);
+
+        }
+        private static bool RecordMonitorBrightness(IntPtr hMonitor)
+        {
             Monitor monitor = new Monitor().init();
 
             bool hasBrightness = GetMonitorBrightness(hMonitor, ref monitor.brightness.min, ref monitor.brightness.current, ref monitor.brightness.max);
@@ -122,41 +218,7 @@ namespace Penumbra
             return hasBrightness;
         }
 
-        public static void setBrightness(int brightness)
-        {
-            //todo get the normalized brightness
-            foreach (Monitor monitor in hMonitorList)
-            {
-                bool isIt = SetMonitorBrightness(monitor.hMonitor, brightness);
-                int lastWin32Error = Marshal.GetLastWin32Error();
-            }
-        }
-
-        public enum MC_DISPLAY_TECHNOLOGY_TYPE
-        {
-            MC_SHADOW_MASK_CATHODE_RAY_TUBE,
-            MC_APERTURE_GRILL_CATHODE_RAY_TUBE,
-            MC_THIN_FILM_TRANSISTOR,
-            MC_LIQUID_CRYSTAL_ON_SILICON,
-            MC_PLASMA,
-            MC_ORGANIC_LIGHT_EMITTING_DIODE,
-            MC_ELECTROLUMINESCENT,
-            MC_MICROELECTROMECHANICAL,
-            MC_FIELD_EMISSION_DEVICE,
-        }
-
-
-        public static void init()
-        {
-            GetDisplays();
-        }
-
-        public static Boolean brightnessCapability()
-        {
-            return hMonitorList.Count > 0;
-        }
-
-        private static Tuple<bool, IntPtr> verifyMonitor(IntPtr inMonitor)
+        private static MonitorResult VerifyMonitorCapabilities(IntPtr inMonitor)
         {
 
             IntPtr hMonitor = inMonitor;
@@ -191,32 +253,30 @@ namespace Penumbra
 
             bool hasMonitorCapabilities = (((int)MC_CAPS_BRIGHTNESS & pdwMonitorCapabilities) > 0);
 
-            return new Tuple<bool, IntPtr>(hasMonitorCapabilities, pPhysicalMonitorArray[0].hPhysicalMonitor);// hMonitorList.Count > 0;
+            MonitorResult monitorResult = new MonitorResult();
+            monitorResult.success = hasMonitorCapabilities;
+            monitorResult.hMonitor = pPhysicalMonitorArray[0].hPhysicalMonitor;
+            
+            return monitorResult;
         }
 
-        /// <summary>
-        /// Returns the number of Displays using the Win32 functions
-        /// </summary>
-        /// <returns>collection of Display Info</returns>
-        public static void GetDisplays()
+#endregion
+
+#region Enum
+        public enum MC_DISPLAY_TECHNOLOGY_TYPE
         {
-
-            EnumDisplayMonitors(IntPtr.Zero, IntPtr.Zero,
-                delegate(IntPtr hMonitor, IntPtr hdcMonitor, ref Rect lprcMonitor, IntPtr dwData)
-                {
-                    Tuple<Boolean, IntPtr> result = verifyMonitor(hMonitor);
-
-                    if (result.Item1)
-                    {
-                        initBrightness(result.Item2);
-                    }
-
-                    return true;
-                }, IntPtr.Zero);
-
+            MC_SHADOW_MASK_CATHODE_RAY_TUBE,
+            MC_APERTURE_GRILL_CATHODE_RAY_TUBE,
+            MC_THIN_FILM_TRANSISTOR,
+            MC_LIQUID_CRYSTAL_ON_SILICON,
+            MC_PLASMA,
+            MC_ORGANIC_LIGHT_EMITTING_DIODE,
+            MC_ELECTROLUMINESCENT,
+            MC_MICROELECTROMECHANICAL,
+            MC_FIELD_EMISSION_DEVICE,
         }
+#endregion
 
-        public const uint MC_CAPS_BRIGHTNESS = 0x00000002;
 
     }
 }

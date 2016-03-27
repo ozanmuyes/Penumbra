@@ -715,7 +715,7 @@
             // 
             // lb_BrightnessLevel
             // 
-            this.lb_BrightnessLevel.Location = new System.Drawing.Point(0, 98);
+            this.lb_BrightnessLevel.Location = new System.Drawing.Point(9, 98);
             this.lb_BrightnessLevel.Name = "lb_BrightnessLevel";
             this.lb_BrightnessLevel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lb_BrightnessLevel.Size = new System.Drawing.Size(134, 17);

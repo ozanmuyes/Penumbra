@@ -7,7 +7,7 @@ namespace Penumbra.Classes
 	/// <summary>
 	/// Class for manipulating the brightness of the screen
 	/// </summary>
-	public static class Brightness
+	public static class Filter
 	{
 
 #region Consts
@@ -45,6 +45,11 @@ namespace Penumbra.Classes
 
 		[DllImport("gdi32.dll")]
 		static extern bool SetDeviceGammaRamp(IntPtr hdc, ref RAMP lpRamp);
+                
+        [DllImport("Dxva2.dll")]
+        static extern bool SetMonitorBrightness(IntPtr hMonitor, uint dwNewBrightness );
+
+
 
 // ReSharper restore InconsistentNaming
 #endregion
@@ -61,10 +66,9 @@ namespace Penumbra.Classes
 
 #region Ctors
 
-		static Brightness()
+		static Filter()
 		{
-
-			GetDeviceGammaRamp(GetDC(IntPtr.Zero), ref m_InitialRAMP);
+            GetDeviceGammaRamp(GetDC(IntPtr.Zero), ref m_InitialRAMP);
 
 			m_CurrentBrightness = GetBrightnessFromRAMP(m_InitialRAMP);
 
@@ -84,10 +88,9 @@ namespace Penumbra.Classes
 
 			RAMP c_Ramp = CalculateRAMP(p_Brightness);
 
-			SetDeviceGammaRamp(GetDC(IntPtr.Zero), ref c_Ramp);
+            SetDeviceGammaRamp(GetDC(IntPtr.Zero), ref c_Ramp);
 
 			return true;
-
 		}
 
 		public static void ResetBrightness()

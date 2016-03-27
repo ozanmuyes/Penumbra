@@ -168,10 +168,9 @@ namespace Penumbra
         }
         public void SetBrightness(int brightness)
         {
-            //todo get the normalized brightness
             foreach (Monitor monitor in hMonitorList)
             {
-                bool isIt = SetMonitorBrightness(monitor.hMonitor, brightness);
+                SetMonitorBrightness(monitor.hMonitor, CalculateBrightness(brightness, monitor));
                 int lastWin32Error = Marshal.GetLastWin32Error();
             }
         }
@@ -259,6 +258,12 @@ namespace Penumbra
             
             return monitorResult;
         }
+
+        private int CalculateBrightness(int inBrightness, Monitor hMonitor)
+        {
+            return (int)hMonitor.brightness.min + ((int)((float)(hMonitor.brightness.max - hMonitor.brightness.min) * ((float)inBrightness / 100))); 
+        }
+
 
 #endregion
 
